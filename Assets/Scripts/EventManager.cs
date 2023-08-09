@@ -34,6 +34,15 @@ public class EventManager : MonoBehaviour
       }
    }
 
+   public void Restart()
+   {
+      if (OnRestart != null)
+      {
+         _isPaused = false;
+         OnRestart();
+      }
+   }
+
    public void Muted(bool IsMuted)
    {
       if (OnMute!=null)
