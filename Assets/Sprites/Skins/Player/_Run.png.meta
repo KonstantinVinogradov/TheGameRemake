@@ -1,43 +1,37 @@
 fileFormatVersion: 2
-guid: 109293b829a5a34448e83a60a18677ea
+guid: 8d792566796540e469c4bbdc5a934125
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1991978013701120253
-    second: _Roll_0
+      213: -6815865655073467910
+    second: _Run_0
   - first:
-      213: -202818605549072326
-    second: _Roll_1
+      213: -3541803180178263175
+    second: _Run_1
   - first:
-      213: 1556186902649486473
-    second: _Roll_2
+      213: 4667086661595674249
+    second: _Run_2
   - first:
-      213: 8077958609940490686
-    second: _Roll_3
+      213: 5270759154210906397
+    second: _Run_3
   - first:
-      213: -9121563391726497418
-    second: _Roll_4
+      213: -4146325936067752102
+    second: _Run_4
   - first:
-      213: -9056606688895823417
-    second: _Roll_5
+      213: -3916514138589664008
+    second: _Run_5
   - first:
-      213: 4556565587350473879
-    second: _Roll_6
+      213: 4717485204334195319
+    second: _Run_6
   - first:
-      213: 5341982550336375304
-    second: _Roll_7
+      213: -8804724334827305186
+    second: _Run_7
   - first:
-      213: -1286366179472718315
-    second: _Roll_8
+      213: -1651344887907152167
+    second: _Run_8
   - first:
-      213: 4957621484318243354
-    second: _Roll_9
-  - first:
-      213: -3519438347738583683
-    second: _Roll_10
-  - first:
-      213: 3155953479660762474
-    second: _Roll_11
+      213: 1419965548442625225
+    second: _Run_9
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -143,12 +137,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Roll_0
+      name: _Run_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 1
-        width: 26
+        x: 42
+        y: 0
+        width: 30
         height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -157,230 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: df02b03137de4ab10800000000000000
-      internalID: 1991978013701120253
+      spriteID: af19f887c4e2961a0800000000000000
+      internalID: -6815865655073467910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Roll_1
+      name: _Run_1
       rect:
         serializedVersion: 2
         x: 163
-        y: 4
-        width: 38
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a3058668d817f2df0800000000000000
-      internalID: -202818605549072326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_2
-      rect:
-        serializedVersion: 2
-        x: 283
-        y: 7
-        width: 42
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98cb9803ebfa89510800000000000000
-      internalID: 1556186902649486473
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_3
-      rect:
-        serializedVersion: 2
-        x: 402
-        y: 11
-        width: 44
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eb9afcf8e8caa1070800000000000000
-      internalID: 8077958609940490686
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_4
-      rect:
-        serializedVersion: 2
-        x: 522
-        y: 11
-        width: 43
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6715fef5c62b96180800000000000000
-      internalID: -9121563391726497418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_5
-      rect:
-        serializedVersion: 2
-        x: 641
-        y: 6
-        width: 45
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7c110fd4338705280800000000000000
-      internalID: -9056606688895823417
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_6
-      rect:
-        serializedVersion: 2
-        x: 766
-        y: 0
-        width: 30
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 79c4bcd824c2c3f30800000000000000
-      internalID: 4556565587350473879
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_7
-      rect:
-        serializedVersion: 2
-        x: 892
-        y: 0
-        width: 25
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 80a822593d8822a40800000000000000
-      internalID: 5341982550336375304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_8
-      rect:
-        serializedVersion: 2
-        x: 1014
-        y: 0
-        width: 27
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 516c37576c8e52ee0800000000000000
-      internalID: -1286366179472718315
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_9
-      rect:
-        serializedVersion: 2
-        x: 1128
-        y: 0
-        width: 27
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a1a32af29720dc440800000000000000
-      internalID: 4957621484318243354
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_10
-      rect:
-        serializedVersion: 2
-        x: 1248
-        y: 0
-        width: 24
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7d67223871782fc0800000000000000
-      internalID: -3519438347738583683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Roll_11
-      rect:
-        serializedVersion: 2
-        x: 1365
         y: 0
         width: 28
-        height: 34
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -388,8 +172,176 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a6576d208f23ccb20800000000000000
-      internalID: 3155953479660762474
+      spriteID: 973302dd5ccf8dec0800000000000000
+      internalID: -3541803180178263175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Run_2
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 986bf586792d4c040800000000000000
+      internalID: 4667086661595674249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Run_3
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 0
+        width: 21
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d11216b668f752940800000000000000
+      internalID: 5270759154210906397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Run_4
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 2
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5f41b1878a4576c0800000000000000
+      internalID: -4146325936067752102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Run_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1
+        width: 31
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fc619b342fb5a9c0800000000000000
+      internalID: -3916514138589664008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Run_6
+      rect:
+        serializedVersion: 2
+        x: 763
+        y: 0
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 772308d8ccfd77140800000000000000
+      internalID: 4717485204334195319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Run_7
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 0
+        width: 19
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e17816dedd55fc580800000000000000
+      internalID: -8804724334827305186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Run_8
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 0
+        width: 20
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de03aad29e3519e0800000000000000
+      internalID: -1651344887907152167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _Run_9
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 2
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c4273c942bb4b310800000000000000
+      internalID: 1419965548442625225
       vertices: []
       indices: 
       edges: []
@@ -405,18 +357,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      _Roll_0: 1991978013701120253
-      _Roll_1: -202818605549072326
-      _Roll_10: -3519438347738583683
-      _Roll_11: 3155953479660762474
-      _Roll_2: 1556186902649486473
-      _Roll_3: 8077958609940490686
-      _Roll_4: -9121563391726497418
-      _Roll_5: -9056606688895823417
-      _Roll_6: 4556565587350473879
-      _Roll_7: 5341982550336375304
-      _Roll_8: -1286366179472718315
-      _Roll_9: 4957621484318243354
+      _Run_0: -6815865655073467910
+      _Run_1: -3541803180178263175
+      _Run_2: 4667086661595674249
+      _Run_3: 5270759154210906397
+      _Run_4: -4146325936067752102
+      _Run_5: -3916514138589664008
+      _Run_6: 4717485204334195319
+      _Run_7: -8804724334827305186
+      _Run_8: -1651344887907152167
+      _Run_9: 1419965548442625225
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

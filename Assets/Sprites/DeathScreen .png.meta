@@ -1,19 +1,28 @@
 fileFormatVersion: 2
-guid: f9758a9006704694db7cd0fd71a0663c
+guid: cfaa9793b4d504f40a7010063602bada
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3117775995601270193
-    second: _Attack_0
+      213: 2197180960615923641
+    second: DeathScreen _0
   - first:
-      213: 8139804621348180182
-    second: _Attack_1
+      213: 7448108855128256608
+    second: DeathScreen _1
   - first:
-      213: -3573696086554577925
-    second: _Attack_2
+      213: 7971530773967379434
+    second: DeathScreen _2
   - first:
-      213: -6677449987691099553
-    second: _Attack_3
+      213: 914100077865062664
+    second: DeathScreen _3
+  - first:
+      213: 396774831257526145
+    second: DeathScreen _4
+  - first:
+      213: 5104410869978167547
+    second: DeathScreen _5
+  - first:
+      213: -2799534737598855305
+    second: DeathScreen _6
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -119,85 +128,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Attack_0
+      name: DeathScreen _0
       rect:
         serializedVersion: 2
-        x: 35
+        x: 0
         y: 0
-        width: 41
-        height: 38
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b5bd03dfb0944b20800000000000000
-      internalID: 3117775995601270193
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Attack_1
-      rect:
-        serializedVersion: 2
-        x: 170
-        y: 0
-        width: 68
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d09a843d2566f070800000000000000
-      internalID: 8139804621348180182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Attack_2
-      rect:
-        serializedVersion: 2
-        x: 292
-        y: 0
-        width: 67
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bf3f5b1f75ea76ec0800000000000000
-      internalID: -3573696086554577925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: _Attack_3
-      rect:
-        serializedVersion: 2
-        x: 412
-        y: 0
-        width: 61
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f5a4c366d9ee453a0800000000000000
-      internalID: -6677449987691099553
+      spriteID: 9bf73c84174fd7e10800000000000000
+      internalID: 2197180960615923641
       vertices: []
       indices: 
       edges: []
@@ -205,7 +151,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fac64e683f93beb4b8c4492eefb1c469
     internalID: 0
     vertices: []
     indices: 
@@ -213,10 +159,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      _Attack_0: 3117775995601270193
-      _Attack_1: 8139804621348180182
-      _Attack_2: -3573696086554577925
-      _Attack_3: -6677449987691099553
+      DeathScreen _0: 2197180960615923641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-   public delegate void Pause(bool IsPaused);
-   public static event Pause OnPause;
+   public delegate void Paused(bool IsPaused);
+   public static event Paused OnPause;
 
    public delegate void Damaged();
    public static event Damaged OnDamage;
@@ -22,10 +22,15 @@ public class EventManager : MonoBehaviour
    public delegate void Healed();
    public static event Healed OnHeal;
 
+   public delegate void Dead();
+   public static event Dead OnDeath;
+
    private bool _isPaused = true;
 
+   public GameObject DeathScreen;
 
-   public void Paused(bool IsPaused)
+
+   public void Pause(bool IsPaused)
    {
       if (OnPause != null)
       {
@@ -65,6 +70,15 @@ public class EventManager : MonoBehaviour
    {
       if (OnHeal != null)
          OnHeal();
+   }
+
+   public void Die()
+   {
+      if (OnDeath != null)
+      {
+         DeathScreen.SetActive(true);
+         OnDeath();
+      }
    }
 
    // Update is called once per frame

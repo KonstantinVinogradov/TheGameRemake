@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
    void Awake()
    {
       EventManager.OnPause += PauseListener; // подписка на событие OnPause
+      EventManager.OnDeath += DeathListener;
       //EventManager.OnRestart += RestartListener; // подписка на событие Restart
 
       Player = GameObject.Find("Player");
@@ -91,6 +92,11 @@ public class Enemy : MonoBehaviour
       _spriteRenderer.flipX = true;
    }
 
+   void DeathListener()
+   {
+      _isPaused = true;
+   }
+
    void FixedUpdate()
    {
       if (!_isPaused) // определяем стоит ли игра на паузе (не зависимо от того жив ли враг)
@@ -133,7 +139,7 @@ public class Enemy : MonoBehaviour
          _playerRigidbody2D = Player.GetComponent<Rigidbody2D>();
          _direction = _playerRigidbody2D.position - _rigidbody.position;
          _spriteRenderer.flipX = (_direction.x < 0.0f) ? true : false;
-         if (_direction.magnitude > 70.0f && _direction.magnitude < 300.0f) // если игрок не слишком далеко но ещё недоступен для ближней атаки
+         if (_direction.magnitude > 1.2f && _direction.magnitude < 6.0f) // если игрок не слишком далеко но ещё недоступен для ближней атаки
          {
             _direction.Normalize();
             _rigidbody.velocity = new Vector2(_direction.x * _moveSpeed, _direction.y * _moveSpeed);
@@ -141,7 +147,7 @@ public class Enemy : MonoBehaviour
             _animator.SetBool("IsAttacking", false);
             _timeForAttack = 0.0f;
          }
-         else if (_direction.magnitude > 300.0f) // если игрок далеко
+         else if (_direction.magnitude > 6.0f) // если игрок далеко
          {
             _rigidbody.velocity = new Vector2(0.0f, 0.0f);
             _animator.SetBool("IsRunning", false);
@@ -150,6 +156,7 @@ public class Enemy : MonoBehaviour
          }
          else // если игрок достаточно близок для ближней атаки
          {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x/1.2f, _rigidbody.velocity.y / 1.2f);
             _animator.SetBool("IsAttacking", true);
             _timeForAttack += Time.deltaTime;
             if (_timeForAttack > 1.1f) // если анимация атаки кончилась
@@ -209,6 +216,7 @@ public class Enemy : MonoBehaviour
       _isDamaged = true;
       _timeForHealthBar = 0.0f;
    }
+
    public void Mute(bool mute)
    {
       DeathSound.mute = mute;

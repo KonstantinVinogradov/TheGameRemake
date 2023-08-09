@@ -6,24 +6,16 @@ public class PauseMenu : MonoBehaviour
 {
    public EventManager events;
    public GameObject PausePanel;
-   void Awake()
-   {
-      EventManager.OnPause += PauseListener;
-   }
-
-   public void PauseListener(bool IsPaused)
-   {
-      PausePanel.SetActive(true);
-   }
 
    public void Pause()
    {
-      Debug.Log("Paused");
+      events.Pause(true);
+      PausePanel.SetActive(true);
    }
 
    public void Resume()
    {
-      events.Paused(false);
+      events.Pause(false);
    }
 
    public void Restart()

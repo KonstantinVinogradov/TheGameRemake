@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
       }
       if (_life == 0)
       {
+         events.Die();
+         _isPaused= true;
          _animator.SetBool("IsDead", true);
          _animator.SetBool("IsAttacking", false);
          _animator.SetBool("IsRunning", false);
@@ -197,8 +199,15 @@ public class PlayerController : MonoBehaviour
       }
       if (!_isPaused) // определяем стоит ли игра на паузе
       {
-         MoveByJoystick();
-         //MoveByKeyboard();
+         if (!_isAttacking)
+         {
+            //MoveByJoystick();
+            MoveByKeyboard();
+         }
+         else
+         {
+            _rigidbody.velocity = new Vector2(0, 0);
+         }
          if (_isAttacking)
          {
             _timeForAttack += Time.deltaTime;
