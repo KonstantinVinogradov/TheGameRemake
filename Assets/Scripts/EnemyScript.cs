@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
    {
       EventManager.OnPause += PauseListener; // подписка на событие OnPause
       EventManager.OnDeath += DeathListener;
-      //EventManager.OnRestart += RestartListener; // подписка на событие Restart
 
       Player = GameObject.Find("Player");
       _playerRigidbody2D = Player.GetComponent<Rigidbody2D>();
@@ -63,7 +62,7 @@ public class Enemy : MonoBehaviour
       _animator.SetBool("IsDead", false);
       _animator.SetBool("IsSpawning", true);
       _spriteRenderer.flipX = true;
-      
+
    }
 
    void PauseListener(bool IsPaused) // функция которая будет выполняться при событии "пауза"
@@ -71,29 +70,13 @@ public class Enemy : MonoBehaviour
       _isPaused = IsPaused;
    }
 
-   void RestartListener()
-   {
-
-      _health = 3;
-      _isPaused = false;
-      _timeForAttack = 0.0f;
-      _isDead = false;
-      _isDamaged = false;
-      _timeForAttack = 0.0f;
-      _timeForDecay = 0.0f;
-      _timeForHealthBar = 0.0f;
-      _timeToSpawn = 0.0f;
-      _rigidbody.velocity = new Vector2(0.0f, 0.0f);
-
-      _animator.SetBool("IsRunning", false);
-      _animator.SetBool("IsAttacking", false);
-      _animator.SetBool("IsDead", false);
-      _spriteRenderer.flipX = true;
-   }
-
    void DeathListener()
    {
       _isPaused = true;
+      if (_isSpawning)
+      {
+         Destroy(EnemyObject);
+      }
    }
 
    void FixedUpdate()
@@ -155,7 +138,7 @@ public class Enemy : MonoBehaviour
          }
          else // если игрок достаточно близок для ближней атаки
          {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x/1.2f, _rigidbody.velocity.y / 1.2f);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x / 1.2f, _rigidbody.velocity.y / 1.2f);
             _animator.SetBool("IsAttacking", true);
             _timeForAttack += Time.deltaTime;
             if (_timeForAttack > 1.1f) // если анимация атаки кончилась
@@ -184,11 +167,11 @@ public class Enemy : MonoBehaviour
             {
                _timeForDecay = 0.0f;
 
-               if (rnd.NextDouble() < 1.0/4.0) // есть шанс что из трупа выпадет лут
+               if (rnd.NextDouble() < 1.0 / 2.0) // есть шанс что из трупа выпадет лут
                {
                   GameObject Health = Instantiate(HealthPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
-                  GameObject BackGround = GameObject.Find("BackGround");
-                  //Health.transform.SetParent(BackGround.transform);
+                  GameObject Space = GameObject.Find("Space");
+                  Health.transform.SetParent(Space.transform);
                   Health.transform.localPosition = _rectTransform.transform.localPosition;
                }
                Destroy(EnemyObject);

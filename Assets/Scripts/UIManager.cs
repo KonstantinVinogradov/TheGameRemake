@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
       EventManager.OnDeath += DeathListener;
       EventManager.OnHeal += HealListener;
       EventManager.OnKill += KillListener;
+      EventManager.OnRestart += RestartListener;
    }
 
    void DamageListener()
@@ -67,6 +68,17 @@ public class UIManager : MonoBehaviour
    {
       _score++;
       Score.text = "Score:" + _score.ToString();
+   }
+
+   void RestartListener()
+   {
+      _life = 3;
+      foreach (GameObject heart in Life)
+         heart.SetActive(true);
+      _score = 0;
+      Score.text = "Score:" + _score.ToString();
+      AttackButton.interactable = true;
+      RollButton.interactable = true;
    }
 
 }

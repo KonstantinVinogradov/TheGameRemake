@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private FixedJoystick _joystick;
    [SerializeField] private Animator _animator;
 
+   [SerializeField] private AudioSource HealSound;
+
    [SerializeField] private float _moveSpeed;
    [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -61,8 +63,9 @@ public class PlayerController : MonoBehaviour
 
    void RestartListener()
    {
+      Debug.Log("what");
       _life = 3;
-      _rectTransform.anchoredPosition = new Vector2(419.4f, 181.7f);
+      _rectTransform.anchoredPosition = new Vector2(400.0001f, 225.0f);
       _rigidbody.velocity = new Vector2(0, 0);
       _spriteRenderer.flipX = false;
       _isPaused = false;
@@ -277,6 +280,7 @@ public class PlayerController : MonoBehaviour
          {
             _life++;
             events.Heal();
+            HealSound.Play();
             Destroy(other.gameObject);
          }
       }

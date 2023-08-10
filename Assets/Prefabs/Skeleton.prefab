@@ -358,8 +358,8 @@ MonoBehaviour:
   HealthBar: {fileID: 5524164650318356114}
   EnemyObject: {fileID: 4103235345654216569}
   SkeletonPrefab: {fileID: 4103235345654216569}
-  HealthPrefab: {fileID: 0}
-  events: {fileID: 0}
+  HealthPrefab: {fileID: 2294630155253594341, guid: 3b96cc52bb348cf479d539c027ef6099, type: 3}
+  events: {fileID: 6663911863034814644, guid: 1cbebdb4413412249a2714f8c27aa71a, type: 3}
   DeathSound: {fileID: 5733002749479349394}
   LifeDecrease: {fileID: 8218531077100138236}
 --- !u!95 &115935761103221328
