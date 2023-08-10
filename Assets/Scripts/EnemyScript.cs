@@ -18,7 +18,6 @@ public class Enemy : MonoBehaviour
    public GameObject EnemyObject;
    public GameObject SkeletonPrefab;
    public GameObject HealthPrefab;
-   //public GameObject BackGround;
    public EventManager events;
    public AudioSource DeathSound;
    public AudioSource LifeDecrease;
