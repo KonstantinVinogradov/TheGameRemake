@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
    private void KillListener()
    {
       _score++;
+      SaveManager.Instance.SaveScore(_score);
       Score.text = "Score:" + _score.ToString();
    }
 
