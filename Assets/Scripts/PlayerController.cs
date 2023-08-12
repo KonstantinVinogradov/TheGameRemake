@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private float _moveSpeed;
    [SerializeField] private SpriteRenderer _spriteRenderer;
 
-   public EventManager events;
    public AudioSource SwordAttack;
    public AudioSource LifeDecrease;
    private short _life = 3;
@@ -36,7 +35,7 @@ public class PlayerController : MonoBehaviour
       EventManager.OnDamage += DamageListener; //игрок подписан на получение урона
       EventManager.OnPause += PauseListener; // игрок реагирует на паузу
       EventManager.OnRestart += RestartListener; // игрок реагирует на рестарт игры
-      EventManager.OnMute += MuteListener;
+      EventManager.OnMute += Mute;
    }
 
    void DamageListener()
@@ -48,7 +47,7 @@ public class PlayerController : MonoBehaviour
       }
       if (_life == 0)
       {
-         events.Die();
+         EventManager.Instance.Die();
          _isPaused= true;
          _animator.SetBool("IsDead", true);
          _animator.SetBool("IsAttacking", false);
@@ -63,7 +62,6 @@ public class PlayerController : MonoBehaviour
 
    void RestartListener()
    {
-      Debug.Log("what");
       _life = 3;
       _rectTransform.anchoredPosition = new Vector2(400.0001f, 225.0f);
       _rigidbody.velocity = new Vector2(0, 0);
@@ -76,10 +74,11 @@ public class PlayerController : MonoBehaviour
       _animator.SetBool("IsDead", false);
    }
 
-   void MuteListener(bool IsMuted)
+   void Mute(bool IsMuted)
    {
       SwordAttack.mute = IsMuted;
       LifeDecrease.mute = IsMuted;
+      HealSound.mute = IsMuted;
    }
 
    void MoveByJoystick()
@@ -279,7 +278,7 @@ public class PlayerController : MonoBehaviour
          if (_life < 3 && _life > 0)
          {
             _life++;
-            events.Heal();
+            EventManager.Instance.Heal();
             HealSound.Play();
             Destroy(other.gameObject);
          }

@@ -14,9 +14,6 @@ public class EventManager : MonoBehaviour
    public delegate void Restarted();
    public static event Restarted OnRestart;
 
-   public delegate void Mute(bool IsMuted);
-   public static event Mute OnMute;
-
    public delegate void Killed();
    public static event Killed OnKill;
 
@@ -26,9 +23,15 @@ public class EventManager : MonoBehaviour
    public delegate void Dead();
    public static event Dead OnDeath;
 
+   public delegate void Muted(bool IsMuted);
+   public static event Muted OnMute;
+
+   public static EventManager Instance { get; private set; }
+
    private System.Random rnd = new();
 
-   private bool _isPaused = true;
+   private static bool _isPaused = true;
+   private static bool _isMuted = false;
 
    public GameObject DeathScreen;
    public GameObject EnemyPrefab;
@@ -48,13 +51,25 @@ public class EventManager : MonoBehaviour
 
    public void Start()
    {
-      _isPaused = false;
+      if (Instance)
+      {
+         Destroy(this);
+      }
+      else
+      {
+         Instance = this;
+         DontDestroyOnLoad(Instance);
+      }
+      _isPaused = true;
+      
       GameObject Enemy = Instantiate(EnemyPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
       GameObject Space = GameObject.Find("Space");
       Enemy.transform.SetParent(Space.transform);
-      Enemy.transform.localPosition = new Vector2(240.2f, 9.6f);
+      Enemy.transform.localPosition = new Vector2(5.6f, 0.6f);
       Enemies.Add(Enemy);
       _timeForNewEnemy = 0.0f;
+      if (OnPause != null)
+         OnPause(true);
    }
 
    public void Restart()
@@ -70,18 +85,13 @@ public class EventManager : MonoBehaviour
          GameObject Enemy = Instantiate(EnemyPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
          GameObject Space = GameObject.Find("Space");
          Enemy.transform.SetParent(Space.transform);
-         Enemy.transform.localPosition = new Vector2(240.2f, 9.6f);
+         Enemy.transform.localPosition = new Vector2(5.6f, 0.6f);
+         Enemy.GetComponent<Enemy>().Mute(_isMuted);
          Enemies.Add(Enemy);
          _timeForNewEnemy = 0.0f;
          DeathScreen.SetActive(false);
          OnRestart();
       }
-   }
-
-   public void Muted(bool IsMuted)
-   {
-      if (OnMute != null)
-         OnMute(IsMuted);
    }
 
    public void Damage()
@@ -112,6 +122,15 @@ public class EventManager : MonoBehaviour
       }
    }
 
+   public void Mute(bool IsMuted)
+   {
+      _isMuted = IsMuted;
+      if (OnMute!=null)
+         OnMute(IsMuted);
+      foreach (GameObject enemy in Enemies)
+         enemy.GetComponent<Enemy>().Mute(IsMuted);
+   }
+
    void FixedUpdate()
    {
       if (!_isPaused)
@@ -122,8 +141,10 @@ public class EventManager : MonoBehaviour
             GameObject Enemy = Instantiate(EnemyPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
             GameObject Space = GameObject.Find("Space");
             Enemy.transform.SetParent(Space.transform);
-            Enemy.transform.localPosition = new Vector2(   (float)rnd.Next(-376, 376)   , (float)rnd.Next(-188, 183)   );
+            Enemy.transform.localPosition = new Vector2(   (float)rnd.NextDouble() * 16.54f - 8.24f   , (float)rnd.NextDouble() * 8.31f -4.15f   );
+            Enemy.GetComponent<Enemy>().Mute(_isMuted);
             Enemies.Add(Enemy);
+
             _timeForNewEnemy = 0.0f;
          }
       }

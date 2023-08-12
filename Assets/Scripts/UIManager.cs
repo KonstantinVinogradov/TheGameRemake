@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
    public Button AttackButton;
    public Button RollButton;
 
-   void Awake()
+   private void Awake()
    {
       EventManager.OnDamage += DamageListener;
       EventManager.OnDeath += DeathListener;
@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
       EventManager.OnRestart += RestartListener;
    }
 
-   void DamageListener()
+   private void DamageListener()
    {
       _life--;
       if (_life == 2)
@@ -41,13 +41,13 @@ public class UIManager : MonoBehaviour
       }
    }
 
-   void DeathListener()
+   private void DeathListener()
    {
       AttackButton.interactable = false;
       RollButton.interactable = false;
    }
 
-   void HealListener() 
+   private void HealListener() 
    {
       _life++;
       if (_life == 3)
@@ -64,13 +64,13 @@ public class UIManager : MonoBehaviour
       }
    }
 
-   void KillListener()
+   private void KillListener()
    {
       _score++;
       Score.text = "Score:" + _score.ToString();
    }
 
-   void RestartListener()
+   private void RestartListener()
    {
       _life = 3;
       foreach (GameObject heart in Life)

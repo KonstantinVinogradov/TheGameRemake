@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-   public EventManager events;
    public GameObject PausePanel;
 
    public void Pause()
    {
-      events.Pause(true);
+      EventManager.Instance.Pause(true);
       PausePanel.SetActive(true);
    }
 
    public void Resume()
    {
-      events.Pause(false);
+      EventManager.Instance.Pause(false);
    }
 
    public void Restart()
    {
-      events.Restart();
+      EventManager.Instance.Restart();
    }
 
    public void Exit()
    {
       Application.Quit();
+   }
+
+   public void MuteSounds()
+   {
+      EventManager.Instance.Mute(true);
+   }
+   public void UnmuteSounds()
+   {
+      EventManager.Instance.Mute(false);
    }
 }

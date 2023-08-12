@@ -6,7 +6,6 @@ public class SelfDestroy : MonoBehaviour
 {
    [SerializeField] private Animator _animator;
    [SerializeField] private GameObject self;
-   [SerializeField] private AudioSource Sound;
 
    private bool _isPaused = false;
    private bool _blinking = false;

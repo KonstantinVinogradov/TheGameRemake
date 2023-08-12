@@ -18,7 +18,6 @@ public class Enemy : MonoBehaviour
    public GameObject EnemyObject;
    public GameObject SkeletonPrefab;
    public GameObject HealthPrefab;
-   public EventManager events;
    public AudioSource DeathSound;
    public AudioSource LifeDecrease;
 
@@ -143,7 +142,7 @@ public class Enemy : MonoBehaviour
             _timeForAttack += Time.deltaTime;
             if (_timeForAttack > 1.1f) // если анимация атаки кончилась
             {
-               events.Damage(); // сообщаем игроку что мы его ударили
+               EventManager.Instance.Damage(); // сообщаем игроку что мы его ударили
                _timeForAttack = 0.0f; // обнуляем счётчик времени
             }
          }
@@ -182,21 +181,24 @@ public class Enemy : MonoBehaviour
 
    public void TakeDamage()
    {
-      if (_health > 0)
+      if (!_isSpawning)
       {
-         _health--;
+         if (_health > 0)
+         {
+            _health--;
+         }
+         if (_health == 0 && !_isDead)
+         {
+            DeathSound.Play();
+            EventManager.Instance.Kill();
+         }
+         else if (!_isDead)
+         {
+            LifeDecrease.Play();
+         }
+         _isDamaged = true;
+         _timeForHealthBar = 0.0f;
       }
-      if (_health == 0 && !_isDead)
-      {
-         DeathSound.Play();
-         events.Kill();
-      }
-      else if (!_isDead)
-      {
-         LifeDecrease.Play();
-      }
-      _isDamaged = true;
-      _timeForHealthBar = 0.0f;
    }
 
    public void Mute(bool mute)
