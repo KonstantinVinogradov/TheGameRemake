@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RollButton_0: -6516027047365683006
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

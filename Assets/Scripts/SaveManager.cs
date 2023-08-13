@@ -36,7 +36,7 @@ public class SaveManager : MonoBehaviour
          DontDestroyOnLoad(Instance);
       }
 #if UNITY_ANDROID && !UNITY_EDITOR
-      path = Path.Combine(Application.persistentDataPath, Save.json);
+      path = Path.Combine(Application.persistentDataPath, "Save.json");
 #else
       path = Path.Combine(Application.dataPath, "Save.json");
 #endif

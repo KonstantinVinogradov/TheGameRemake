@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour
          _playerRigidbody2D = Player.GetComponent<Rigidbody2D>();
          _direction = _playerRigidbody2D.position - _rigidbody.position;
          _spriteRenderer.flipX = (_direction.x < 0.0f) ? true : false;
-         if (_direction.magnitude > 1.2f && _direction.magnitude < 6.0f) // если игрок не слишком далеко но ещё недоступен для ближней атаки
+         if (_direction.magnitude > 1.6f && _direction.magnitude < 6.0f) // если игрок не слишком далеко но ещё недоступен для ближней атаки
          {
             _direction.Normalize();
             _rigidbody.velocity = new Vector2(_direction.x * _moveSpeed, _direction.y * _moveSpeed);

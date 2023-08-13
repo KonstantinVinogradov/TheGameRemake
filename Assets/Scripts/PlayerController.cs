@@ -203,8 +203,8 @@ public class PlayerController : MonoBehaviour
       {
          if (!_isAttacking)
          {
-            //MoveByJoystick();
-            MoveByKeyboard();
+            MoveByJoystick();
+            //MoveByKeyboard();
          }
          else
          {
