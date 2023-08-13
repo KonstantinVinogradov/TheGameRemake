@@ -22,9 +22,11 @@ public class PlayerController : MonoBehaviour
    private bool _isRolling;
    private bool _isMoving; // перекат можно сделать только из состояния движения(вроде логично)
    private bool _isAttacking;
+   private bool _isReloading;
    private bool hitted;
    private float _timeForRolling = 0.0f;
    private float _timeForAttack = 0.0f;
+   private float _timeToReload = 0.0f;
 
    public Transform AttackPoint;
    public float AttackRange;
@@ -203,8 +205,8 @@ public class PlayerController : MonoBehaviour
       {
          if (!_isAttacking)
          {
-            MoveByJoystick();
-            //MoveByKeyboard();
+            //MoveByJoystick();
+            MoveByKeyboard();
          }
          else
          {
@@ -230,7 +232,17 @@ public class PlayerController : MonoBehaviour
                   _animator.SetBool("IsAttacking", false);
                   _timeForAttack = 0;
                   hitted = false;
+                  _isReloading = true;
                }
+            }
+         }
+         if (_isReloading)
+         {
+            _timeToReload += Time.deltaTime;
+            if (_timeToReload > 0.2f)
+            {
+               _isReloading = false;
+               _timeToReload = 0.0f;
             }
          }
       }
@@ -251,7 +263,7 @@ public class PlayerController : MonoBehaviour
 
    public void Attack()
    {
-      if (!_isRolling)
+      if (!_isRolling && !_isAttacking && !_isReloading)
       {
          _animator.SetBool("IsRunning", false);
          _animator.SetBool("IsAttacking", true); // анимация атаки включается сразу после нажатия кнопки, а урон только по прошествии времени равному длительности анимации

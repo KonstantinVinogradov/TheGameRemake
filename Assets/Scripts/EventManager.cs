@@ -35,6 +35,7 @@ public class EventManager : MonoBehaviour
 
    public GameObject DeathScreen;
    public GameObject EnemyPrefab;
+   public GameObject MushroomPrefab;
 
    private float _timeForNewEnemy = 0.0f;
 
@@ -138,10 +139,10 @@ public class EventManager : MonoBehaviour
          _timeForNewEnemy += Time.deltaTime;
          if (_timeForNewEnemy > 5.0f)
          {
-            GameObject Enemy = Instantiate(EnemyPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
+            GameObject Enemy = (rnd.NextDouble() < 0.5) ? Instantiate(EnemyPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) : Instantiate(MushroomPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
             GameObject Space = GameObject.Find("Space");
             Enemy.transform.SetParent(Space.transform);
-            Enemy.transform.localPosition = new Vector2(   (float)rnd.NextDouble() * 16.54f - 8.24f   , (float)rnd.NextDouble() * 8.31f -4.15f   );
+            Enemy.transform.localPosition = new Vector2(   (float)rnd.NextDouble() * 16.99f - 8.48f   , (float)rnd.NextDouble() * 6.45f - 3.2f   );
             Enemy.GetComponent<Enemy>().Mute(_isMuted);
             Enemies.Add(Enemy);
 

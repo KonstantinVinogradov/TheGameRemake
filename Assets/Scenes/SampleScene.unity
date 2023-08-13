@@ -4829,6 +4829,10 @@ PrefabInstance:
       propertyPath: DeathScreen
       value: 
       objectReference: {fileID: 144944564}
+    - target: {fileID: 6663911863034814644, guid: 1cbebdb4413412249a2714f8c27aa71a, type: 3}
+      propertyPath: MushroomPrefab
+      value: 
+      objectReference: {fileID: 5615954794201433884, guid: b663ba221e98cb14d93dd430b7152c01, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
