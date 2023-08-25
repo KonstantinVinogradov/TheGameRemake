@@ -29,10 +29,14 @@ public class Enemy : MonoBehaviour
    private bool _isDead = false;
    private bool _isDamaged = false; // флаг для отсчёта времени появления полосы здоровья
    private bool _isSpawning = false;
+   private bool _isReloading = false;
+
    private float _timeForAttack = 0.0f; // время от начала атаки после которого урон будет засчитан
    private float _timeForDecay = 0.0f; // время после смерти врага через которое он будет удалён
    private float _timeForHealthBar = 0.0f;
    private float _timeToSpawn = 0.0f;
+   private float _timeToReload = 0.0f;
+
    private short _health = 3;
    private const short _maxHealth = 3;
 
@@ -120,7 +124,7 @@ public class Enemy : MonoBehaviour
          _playerRigidbody2D = Player.GetComponent<Rigidbody2D>();
          _direction = _playerRigidbody2D.position - _rigidbody.position;
          _spriteRenderer.flipX = (_direction.x < 0.0f) ? true : false;
-         if (_direction.magnitude > 1.6f && _direction.magnitude < 6.0f) // если игрок не слишком далеко но ещё недоступен для ближней атаки
+         if (_direction.magnitude > 1.8f && _direction.magnitude < 6.0f) // если игрок не слишком далеко но ещё недоступен для ближней атаки
          {
             _direction.Normalize();
             _rigidbody.velocity = new Vector2(_direction.x * _moveSpeed, _direction.y * _moveSpeed);
@@ -144,6 +148,16 @@ public class Enemy : MonoBehaviour
             {
                EventManager.Instance.Damage(); // сообщаем игроку что мы его ударили
                _timeForAttack = 0.0f; // обнуляем счётчик времени
+               _isReloading = true; // начинаем перезарядку
+            }
+         }
+         if (_isReloading)
+         {
+            _timeToReload += Time.deltaTime;
+            if (_timeToReload > 0.2f)
+            {
+               _isReloading = false;
+               _timeToReload = 0.0f;
             }
          }
          if (_health <= 0)
