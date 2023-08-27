@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
       _rectTransform.anchoredPosition = new Vector2(400.0001f, 225.0f);
       _rigidbody.velocity = new Vector2(0, 0);
       _spriteRenderer.flipX = false;
-      _isPaused = false;
       _isAttacking = false;
       _animator.SetBool("IsRunning", false);
       _animator.SetBool("IsAttacking", false);
@@ -123,6 +122,7 @@ public class PlayerController : MonoBehaviour
             _moveSpeed *= 0.5f;
             _isRolling = false;
             _animator.SetBool("IsRolling", false);
+            UIManager.Instance.StaminaRecover = true;
             _timeForRolling = 0;
          }
       }
@@ -181,7 +181,7 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("IsRunning", true);
          }
       }
-      if (_isRolling == true)
+      if (_isRolling)
       {
          _timeForRolling += Time.deltaTime;
          if (_timeForRolling > 0.6666666666666666f) // длина анимации в секундах делить на параметр ускорения анимации
@@ -189,6 +189,7 @@ public class PlayerController : MonoBehaviour
             _moveSpeed *= 0.5f;
             _isRolling = false;
             _animator.SetBool("IsRolling", false);
+            UIManager.Instance.StaminaRecover = true;
             _timeForRolling = 0;
          }
       }
@@ -203,17 +204,17 @@ public class PlayerController : MonoBehaviour
       }
       if (!_isPaused) // определяем стоит ли игра на паузе
       {
+         
          if (!_isAttacking)
          {
             //MoveByJoystick();
             MoveByKeyboard();
+            if (!_isRolling)
+               UIManager.Instance.StaminaRecover = true;
          }
-         else
+         else // во время атаки двигаться нельзя
          {
             _rigidbody.velocity = new Vector2(0, 0);
-         }
-         if (_isAttacking)
-         {
             _timeForAttack += Time.deltaTime;
             if (_timeForAttack > 0.1f)
             {
@@ -263,8 +264,10 @@ public class PlayerController : MonoBehaviour
 
    public void Attack()
    {
-      if (!_isRolling && !_isAttacking && !_isReloading)
+      if (!_isRolling && !_isAttacking && !_isReloading && UIManager.Instance._stamina > 0)
       {
+         UIManager.Instance.SpendStamina();
+         UIManager.Instance.StaminaRecover = false;
          _animator.SetBool("IsRunning", false);
          _animator.SetBool("IsAttacking", true); // анимация атаки включается сразу после нажатия кнопки, а урон только по прошествии времени равному длительности анимации
          _isMoving = false;
@@ -275,9 +278,12 @@ public class PlayerController : MonoBehaviour
 
    public void Roll()
    {
-      if (_isMoving && !_isRolling && !_isAttacking)
+      if (_isMoving && !_isRolling && !_isAttacking && UIManager.Instance._stamina > 0)
       {
+         UIManager.Instance.SpendStamina();
+         UIManager.Instance.StaminaRecover = false;
          _animator.SetBool("IsRolling", true);
+         UIManager.Instance.AttackButton.interactable = false;
          _moveSpeed *= 2.0f;
          _isRolling = true;
       }

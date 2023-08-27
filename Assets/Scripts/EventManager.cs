@@ -9,7 +9,7 @@ public class EventManager : MonoBehaviour
    public static event Paused OnPause;
 
    public delegate void Damaged();
-   public static event Damaged OnDamage;
+   public static event Damaged OnDamage; // событие если игрок получает урон
 
    public delegate void Restarted();
    public static event Restarted OnRestart;
@@ -21,7 +21,7 @@ public class EventManager : MonoBehaviour
    public static event Healed OnHeal;
 
    public delegate void Dead();
-   public static event Dead OnDeath;
+   public static event Dead OnDeath; // событие если игрок умер
 
    public delegate void Muted(bool IsMuted);
    public static event Muted OnMute;
@@ -92,10 +92,11 @@ public class EventManager : MonoBehaviour
          _timeForNewEnemy = 0.0f;
          DeathScreen.SetActive(false);
          OnRestart();
+         OnPause(false);
       }
    }
 
-   public void Damage()
+   public void Damage() // событие если игрок получает урон
    {
       if (OnDamage != null)
          OnDamage();
