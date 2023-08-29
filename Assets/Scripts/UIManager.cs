@@ -127,6 +127,14 @@ public class UIManager : MonoBehaviour
       }
    }
 
+   public void RecoverStamina(float value)
+   {
+      _stamina = _stamina + value > _maxStamina ? _maxStamina : _stamina + value;
+      Stamina.value = 1.0f;
+      AttackButton.interactable = true;
+      RollButton.interactable = true;
+   }
+
    void FixedUpdate()
    {
       if (!StaminaRecover && Stamina.value > _stamina / _maxStamina && !_isDead && !_isPaused) // Decreasing Stamina

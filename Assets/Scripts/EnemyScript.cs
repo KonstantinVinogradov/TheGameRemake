@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
    public GameObject EnemyObject;
    public GameObject SkeletonPrefab;
    public GameObject HealthPrefab;
+   public GameObject StaminaPotionPrefab;
    public AudioSource DeathSound;
    public AudioSource LifeDecrease;
 
@@ -181,11 +182,18 @@ public class Enemy : MonoBehaviour
                _timeForDecay = 0.0f;
 
                if (rnd.NextDouble() < 1.0 / 2.0) // есть шанс что из трупа выпадет лут
-               {
+               { // либо восстановление здоровья
                   GameObject Health = Instantiate(HealthPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
                   GameObject Space = GameObject.Find("Space");
                   Health.transform.SetParent(Space.transform);
                   Health.transform.localPosition = _rectTransform.transform.localPosition;
+               }
+               else if (rnd.NextDouble() < 1.0 / 2.0)
+               { // либо восстановление выносливости
+                  GameObject StaminaPotion = Instantiate(StaminaPotionPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
+                  GameObject Space = GameObject.Find("Space");
+                  StaminaPotion.transform.SetParent(Space.transform);
+                  StaminaPotion.transform.localPosition = _rectTransform.transform.localPosition;
                }
                Destroy(EnemyObject);
             }

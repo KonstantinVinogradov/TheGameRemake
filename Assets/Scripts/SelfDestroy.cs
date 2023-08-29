@@ -5,7 +5,7 @@ using UnityEngine;
 public class SelfDestroy : MonoBehaviour
 {
    [SerializeField] private Animator _animator;
-   [SerializeField] private GameObject self;
+   private GameObject self;
 
    private bool _isPaused = false;
    private bool _blinking = false;
@@ -14,6 +14,7 @@ public class SelfDestroy : MonoBehaviour
 
    void Awake()
    {
+      self = this.gameObject;
       EventManager.OnPause += PauseListener; // подписка на событие OnPause
       EventManager.OnRestart += RestartListener;
    }

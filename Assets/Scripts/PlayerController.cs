@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private Animator _animator;
 
    [SerializeField] private AudioSource HealSound;
+   [SerializeField] private AudioSource StaminaPotionSound;
 
    [SerializeField] private float _moveSpeed;
    [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -300,6 +301,12 @@ public class PlayerController : MonoBehaviour
             HealSound.Play();
             Destroy(other.gameObject);
          }
+      }
+      else if (other.gameObject.tag == "StaminaPotion")
+      {
+         UIManager.Instance.RecoverStamina(3.0f);
+         StaminaPotionSound.Play();
+         Destroy(other.gameObject);
       }
    }
 }
