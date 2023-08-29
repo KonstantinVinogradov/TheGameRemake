@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
    private bool _isDamaged = false; // флаг для отсчёта времени появления полосы здоровья
    private bool _isSpawning = false;
    private bool _isReloading = false;
+   private bool _isPlayerDead = false;
 
    private float _timeForAttack = 0.0f; // время от начала атаки после которого урон будет засчитан
    private float _timeForDecay = 0.0f; // время после смерти врага через которое он будет удалён
@@ -71,11 +72,15 @@ public class Enemy : MonoBehaviour
 
    void PauseListener(bool IsPaused) // функция которая будет выполняться при событии "пауза"
    {
-      _isPaused = IsPaused;
+        if (!_isPlayerDead)
+        {
+           _isPaused = IsPaused;
+        }
    }
 
    void DeathListener()
    {
+      _isPlayerDead = true;
       _isPaused = true;
       if (_isSpawning)
       {

@@ -32,6 +32,7 @@ public class EventManager : MonoBehaviour
 
    private static bool _isPaused = true;
    private static bool _isMuted = false;
+   private static bool _isDead = false;
 
    public GameObject DeathScreen;
    public GameObject EnemyPrefab;
@@ -78,6 +79,7 @@ public class EventManager : MonoBehaviour
       if (OnRestart != null)
       {
          _isPaused = false;
+         _isDead = false;
          foreach (GameObject enemy in Enemies)
          {
             Destroy(enemy);
@@ -114,12 +116,13 @@ public class EventManager : MonoBehaviour
          OnHeal();
    }
 
-   public void Die()
+   public void Die() // событие если игрок умер
    {
       if (OnDeath != null)
       {
          DeathScreen.SetActive(true);
          _isPaused = true;
+         _isDead = true;
          OnDeath();
       }
    }
@@ -135,7 +138,7 @@ public class EventManager : MonoBehaviour
 
    void FixedUpdate()
    {
-      if (!_isPaused)
+      if (!_isPaused && !_isDead)
       {
          _timeForNewEnemy += Time.deltaTime;
          if (_timeForNewEnemy > 5.0f)
