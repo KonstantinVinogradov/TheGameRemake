@@ -26,6 +26,9 @@ public class EventManager : MonoBehaviour
    public delegate void Muted(bool IsMuted);
    public static event Muted OnMute;
 
+   public delegate void Exploded();
+   public static event Exploded OnExplode;
+
    public static EventManager Instance { get; private set; }
 
    private System.Random rnd = new();
@@ -136,6 +139,14 @@ public class EventManager : MonoBehaviour
          enemy.GetComponent<Enemy>().Mute(IsMuted);
    }
 
+   public void Explode()
+   {
+      if (OnExplode != null)
+      {
+         OnExplode();
+      }
+   }
+
    void FixedUpdate()
    {
       if (!_isPaused && !_isDead)
@@ -143,14 +154,17 @@ public class EventManager : MonoBehaviour
          _timeForNewEnemy += Time.deltaTime;
          if (_timeForNewEnemy > 5.0f)
          {
-            GameObject Enemy = (rnd.NextDouble() < 0.5) ? Instantiate(EnemyPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) : Instantiate(MushroomPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
-            GameObject Space = GameObject.Find("Space");
-            Enemy.transform.SetParent(Space.transform);
-            Enemy.transform.localPosition = new Vector2(   (float)rnd.NextDouble() * 16.99f - 8.48f   , (float)rnd.NextDouble() * 6.45f - 3.2f   );
-            Enemy.GetComponent<Enemy>().Mute(_isMuted);
-            Enemies.Add(Enemy);
+            if (Enemies.Count < 100)
+            {
+               GameObject Enemy = (rnd.NextDouble() < 0.5) ? Instantiate(EnemyPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) : Instantiate(MushroomPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
+               GameObject Space = GameObject.Find("Space");
+               Enemy.transform.SetParent(Space.transform);
+               Enemy.transform.localPosition = new Vector2((float)rnd.NextDouble() * 16.99f - 8.48f, (float)rnd.NextDouble() * 6.45f - 3.2f);
+               Enemy.GetComponent<Enemy>().Mute(_isMuted);
+               Enemies.Add(Enemy);
 
-            _timeForNewEnemy = 0.0f;
+               _timeForNewEnemy = 0.0f;
+            }
          }
       }
    }

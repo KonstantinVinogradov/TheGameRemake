@@ -211,7 +211,11 @@ public class PlayerController : MonoBehaviour
             //MoveByJoystick();
             MoveByKeyboard();
             if (!_isRolling)
+            {
                UIManager.Instance.StaminaRecover = true;
+               if (!UIManager.Instance.MagicDecreasing)
+                  UIManager.Instance.MagicRecover = true;
+            }
          }
          else // во время атаки двигаться нельзя
          {
@@ -288,6 +292,12 @@ public class PlayerController : MonoBehaviour
          _moveSpeed *= 2.0f;
          _isRolling = true;
       }
+   }
+
+   public void Explode()
+   {
+      UIManager.Instance.MagicRecover = false;
+      EventManager.Instance.Explode();
    }
 
    private void OnTriggerEnter2D(Collider2D other)

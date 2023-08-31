@@ -9,11 +9,27 @@ public class UIManager : MonoBehaviour
    public static UIManager Instance;
 
    private short _life = 3;
+   public GameObject[] Life;
+
    public float _stamina { get; private set; } = 3.0f;
    private float _maxStamina = 3.0f;
-   public GameObject[] Life;
    public Slider Stamina;
    public bool StaminaRecover { get; set; } = false;
+
+   public float _magic { get; private set; } = 3.0f;
+   private float _maxMagic = 3.0f;
+   public Slider Magic;
+   private bool _magicRecover = false;
+   public bool MagicRecover 
+   { 
+      get
+      {
+         return _magicRecover;
+      }
+     set { _magicRecover = value; MagicDecreasing = !value; }
+   }
+   public bool MagicDecreasing { get; private set; } = false;
+
    private bool _isDead;
    private bool _isPaused;
 
@@ -22,6 +38,7 @@ public class UIManager : MonoBehaviour
 
    public Button AttackButton;
    public Button RollButton;
+   public Button ExplodeButton;
 
    public void Start()
    {
@@ -44,8 +61,10 @@ public class UIManager : MonoBehaviour
       EventManager.OnKill += KillListener;
       EventManager.OnRestart += RestartListener;
       EventManager.OnPause += PauseListener;
-      _stamina = 3;
-      _maxStamina = 3;
+      EventManager.OnExplode += ExplodeListener;
+      _stamina = 3.0f;
+      _maxStamina = 3.0f;
+      _magic = 3.0f;
    }
 
    private void DamageListener()
@@ -69,6 +88,7 @@ public class UIManager : MonoBehaviour
    {
       AttackButton.interactable = false;
       RollButton.interactable = false;
+      ExplodeButton.interactable = false;
       _isDead = true;
 
    }
@@ -100,18 +120,27 @@ public class UIManager : MonoBehaviour
    private void RestartListener()
    {
       _life = 3;
+      foreach (GameObject heart in Life)
+         heart.SetActive(true);
+
       _stamina = 3.0f;
       _maxStamina = 3.0f;
       Stamina.value = 1.0f;
       StaminaRecover = false;
-      foreach (GameObject heart in Life)
-         heart.SetActive(true);
+
+      _magic = 3.0f;
+      Magic.value = 1.0f;
+      MagicRecover = false;
+
       _score = 0;
       Score.text = "Score:" + _score.ToString();
+
       AttackButton.interactable = true;
       RollButton.interactable = true;
+      ExplodeButton.interactable = true;
+
       _isDead = false;
-      
+
    }
 
    private void PauseListener(bool IsPaused)
@@ -119,15 +148,24 @@ public class UIManager : MonoBehaviour
       _isPaused = IsPaused;
    }
 
-   public void SpendStamina()
+   private void ExplodeListener()
    {
-      if (_stamina >= 1.0)
+      if (_magic >= 3.0f)
       {
-         _stamina-=1.0f;
+         MagicRecover = false;
+         _magic -= 3.0f;
       }
    }
 
-   public void RecoverStamina(float value)
+   public void SpendStamina()
+   {
+      if (_stamina >= 1.0f)
+      {
+         _stamina -= 1.0f;
+      }
+   }
+
+   public void RecoverStamina(float value) // fast recover by stamina potion
    {
       _stamina = _stamina + value > _maxStamina ? _maxStamina : _stamina + value;
       Stamina.value = 1.0f;
@@ -137,23 +175,50 @@ public class UIManager : MonoBehaviour
 
    void FixedUpdate()
    {
-      if (!StaminaRecover && Stamina.value > _stamina / _maxStamina && !_isDead && !_isPaused) // Decreasing Stamina
+      if (!_isDead && !_isPaused)
       {
-         Stamina.value -= 0.005f;
-         if (_stamina <= 1.0)
+         if (!StaminaRecover && Stamina.value > _stamina / _maxStamina) // Decreasing Stamina
          {
-            AttackButton.interactable = false;
-            RollButton.interactable = false;
+            Stamina.value -= 0.005f;
+            if (_stamina <= 1.0f)
+            {
+               AttackButton.interactable = false;
+               RollButton.interactable = false;
+            }
+         }
+         if (!MagicRecover && Magic.value > _magic / _maxMagic) // Decreasing Magic
+         {
+            Magic.value -= 0.005f;
+            if (Magic.value <= _magic / _maxMagic)
+            {
+               MagicDecreasing = false;
+            }
+            if (_magic <= 3.0f)
+            {
+               ExplodeButton.interactable = false;
+            }
          }
       }
-      if (StaminaRecover && Stamina.value < 1.0f && !_isDead && !_isPaused) // Recover Stamina
+      if (!_isDead && !_isPaused)
       {
-         Stamina.value += 0.0005f;
-         _stamina = Stamina.value * _maxStamina;
-         if (_stamina > 1.0)
+         if (StaminaRecover && Stamina.value < 1.0f) // Recover Stamina
          {
-            AttackButton.interactable = true;
-            RollButton.interactable = true;
+            Stamina.value += 0.0005f;
+            _stamina = Stamina.value * _maxStamina;
+            if (_stamina > 1.0)
+            {
+               AttackButton.interactable = true;
+               RollButton.interactable = true;
+            }
+         }
+         if (MagicRecover && Magic.value < 1.0f) // Recover Magic
+         {
+            Magic.value += 0.00025f;
+            _magic = Magic.value * _maxMagic;
+            if (_magic >= 3.0f)
+            {
+               ExplodeButton.interactable = true;
+            }
          }
       }
    }

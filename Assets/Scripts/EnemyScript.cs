@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
    public GameObject SkeletonPrefab;
    public GameObject HealthPrefab;
    public GameObject StaminaPotionPrefab;
+   public GameObject ExplosionPrefab;
    public AudioSource DeathSound;
    public AudioSource LifeDecrease;
 
@@ -46,6 +47,7 @@ public class Enemy : MonoBehaviour
    {
       EventManager.OnPause += PauseListener; // подписка на событие OnPause
       EventManager.OnDeath += DeathListener;
+      EventManager.OnExplode += ExplodeListener;
 
       Player = GameObject.Find("Player");
       _playerRigidbody2D = Player.GetComponent<Rigidbody2D>();
@@ -86,6 +88,24 @@ public class Enemy : MonoBehaviour
       {
          Destroy(EnemyObject);
       }
+   }
+
+   void ExplodeListener()
+   {
+      if (_health > 0)
+      {
+         GameObject Explosion = Instantiate(ExplosionPrefab, GetComponent<RectTransform>().anchoredPosition + new Vector2((float)rnd.NextDouble() * 2.0f - 1.0f, (float)rnd.NextDouble() * 2.0f - 1.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
+         TakeDamage();
+
+         StartCoroutine(DestroyExplosionObjectWithDelay(Explosion, 1.167f));
+      }
+   }
+
+   private System.Collections.IEnumerator DestroyExplosionObjectWithDelay(GameObject Explosion, float delay)
+   {
+      yield return new WaitForSeconds(delay);
+      // Code will be executed after delay
+      Destroy(Explosion);
    }
 
    void FixedUpdate()
