@@ -132,6 +132,14 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.29
       objectReference: {fileID: 0}
+    - target: {fileID: 5430699498873923074, guid: 3b96cc52bb348cf479d539c027ef6099, type: 3}
+      propertyPath: TTL
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430699498873923074, guid: 3b96cc52bb348cf479d539c027ef6099, type: 3}
+      propertyPath: TimeB4Blink
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8607776147483583959, guid: 3b96cc52bb348cf479d539c027ef6099, type: 3}
       propertyPath: m_Sprite
       value: 

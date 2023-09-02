@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Health
   - StaminaPotion
+  - MagicPotion
   layers:
   - Default
   - TransparentFX

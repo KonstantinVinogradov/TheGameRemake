@@ -11,6 +11,8 @@ public class SelfDestroy : MonoBehaviour
    private bool _blinking = false;
 
    private float _timeToDestroy = 0.0f;
+   public float TTL;
+   public float TimeB4Blink;
 
    void Awake()
    {
@@ -37,12 +39,12 @@ public class SelfDestroy : MonoBehaviour
       if (!_isPaused)
       {
          _timeToDestroy += Time.deltaTime;
-         if (_timeToDestroy > 5.0f && !_blinking)
+         if (_timeToDestroy > TimeB4Blink && !_blinking)
          {
             _animator.SetBool("Blinking", true);
             _blinking = true;
          }
-         else if (_timeToDestroy > 8.0f)
+         else if (_timeToDestroy > TTL)
          {
             Destroy(self);
          }

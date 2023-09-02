@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9471baec45daec24d883f1d13e7d47dc
+guid: 8d346a7b06d763d4894b3047c350e5fc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2887184577470883374
-    second: Explode_0
+      213: 3059207000966777112
+    second: potion_02_blue_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Explode_0
+      name: potion_02_blue_0
       rect:
         serializedVersion: 2
-        x: 169
-        y: 166
-        width: 713
-        height: 713
+        x: 6
+        y: 0
+        width: 20
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d99cda7ce8aee7d0800000000000000
-      internalID: -2887184577470883374
+      spriteID: 819430b1f8c747a20800000000000000
+      internalID: 3059207000966777112
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Explode_0: -2887184577470883374
+      potion_02_blue_0: 3059207000966777112
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

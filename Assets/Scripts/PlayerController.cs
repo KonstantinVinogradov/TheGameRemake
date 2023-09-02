@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
    [SerializeField] private Animator _animator;
 
    [SerializeField] private AudioSource HealSound;
-   [SerializeField] private AudioSource StaminaPotionSound;
+   [SerializeField] private AudioSource PotionSound;
 
    [SerializeField] private float _moveSpeed;
    [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
       if (_isRolling == true)
       {
          _timeForRolling += Time.deltaTime;
-         if (_timeForRolling > 1.1f)
+         if (_timeForRolling > 0.6666666666666666f) // длина анимации в секундах делить на параметр ускорения анимации
          {
             _moveSpeed *= 0.5f;
             _isRolling = false;
@@ -208,8 +208,8 @@ public class PlayerController : MonoBehaviour
          
          if (!_isAttacking)
          {
-            //MoveByJoystick();
-            MoveByKeyboard();
+            MoveByJoystick();
+            //MoveByKeyboard();
             if (!_isRolling)
             {
                UIManager.Instance.StaminaRecover = true;
@@ -314,9 +314,21 @@ public class PlayerController : MonoBehaviour
       }
       else if (other.gameObject.tag == "StaminaPotion")
       {
-         UIManager.Instance.RecoverStamina(3.0f);
-         StaminaPotionSound.Play();
-         Destroy(other.gameObject);
+         if (UIManager.Instance._stamina < UIManager.Instance._maxStamina)
+         {
+            UIManager.Instance.RecoverStamina(3.0f);
+            PotionSound.Play();
+            Destroy(other.gameObject);
+         }
+      }
+      else if (other.gameObject.tag == "MagicPotion")
+      {
+         if (UIManager.Instance._magic < UIManager.Instance._maxMagic)
+         {
+            UIManager.Instance.RecoverMagic(3.0f);
+            PotionSound.Play();
+            Destroy(other.gameObject);
+         }
       }
    }
 }

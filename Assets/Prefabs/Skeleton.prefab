@@ -360,7 +360,7 @@ MonoBehaviour:
   SkeletonPrefab: {fileID: 4103235345654216569}
   HealthPrefab: {fileID: 2294630155253594341, guid: 3b96cc52bb348cf479d539c027ef6099, type: 3}
   StaminaPotionPrefab: {fileID: 7384798800647849618, guid: 1a586b13965f47b4282e44c0fbab8a6d, type: 3}
-  ExplosionPrefab: {fileID: 5414240672678497904, guid: 3f91e6d4ca06015479ef04e5dc4657a1, type: 3}
+  MagicPotionPrefab: {fileID: 1260435495747244305, guid: c2ebf7dd02e17d2498d004e415af9ebc, type: 3}
   DeathSound: {fileID: 5733002749479349394}
   LifeDecrease: {fileID: 8218531077100138236}
 --- !u!95 &115935761103221328

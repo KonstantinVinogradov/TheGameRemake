@@ -150,7 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: -5117083591993855032}
-  self: {fileID: 2294630155253594341}
+  TTL: 8
+  TimeB4Blink: 5
 --- !u!95 &-5117083591993855032
 Animator:
   serializedVersion: 7

@@ -1,0 +1,5 @@
+C:/Users/Konstantin/GitHub/TheGameRemake/.utmp/RelWithDebInfo/6u2o491h/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Konstantin/GitHub/TheGameRemake/.utmp/RelWithDebInfo/6u2o491h/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Users/Konstantin/GitHub/TheGameRemake/.utmp/RelWithDebInfo/6u2o491h/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Users/Konstantin/GitHub/TheGameRemake/.utmp/RelWithDebInfo/6u2o491h/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Users/Konstantin/GitHub/TheGameRemake/.utmp/RelWithDebInfo/6u2o491h/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public class Enemy : MonoBehaviour
@@ -19,7 +20,7 @@ public class Enemy : MonoBehaviour
    public GameObject SkeletonPrefab;
    public GameObject HealthPrefab;
    public GameObject StaminaPotionPrefab;
-   public GameObject ExplosionPrefab;
+   public GameObject MagicPotionPrefab;
    public AudioSource DeathSound;
    public AudioSource LifeDecrease;
 
@@ -94,19 +95,10 @@ public class Enemy : MonoBehaviour
    {
       if (_health > 0)
       {
-         GameObject Explosion = Instantiate(ExplosionPrefab, GetComponent<RectTransform>().anchoredPosition + new Vector2((float)rnd.NextDouble() * 2.0f - 1.0f, (float)rnd.NextDouble() * 2.0f - 1.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
+         //GameObject Explosion = Instantiate(ExplosionPrefab, GetComponent<RectTransform>().anchoredPosition + new Vector2((float)rnd.NextDouble() * 2.0f - 1.0f, (float)rnd.NextDouble() * 2.0f - 1.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
          TakeDamage();
-
-         StartCoroutine(DestroyExplosionObjectWithDelay(Explosion, 1.167f));
       }
-   }
-
-   private System.Collections.IEnumerator DestroyExplosionObjectWithDelay(GameObject Explosion, float delay)
-   {
-      yield return new WaitForSeconds(delay);
-      // Code will be executed after delay
-      Destroy(Explosion);
-   }
+   }  
 
    void FixedUpdate()
    {
@@ -206,19 +198,25 @@ public class Enemy : MonoBehaviour
             {
                _timeForDecay = 0.0f;
 
-               if (rnd.NextDouble() < 1.0 / 2.0) // есть шанс что из трупа выпадет лут
+               var p = rnd.NextDouble();
+               GameObject Space = GameObject.Find("Space");
+               if (p < 1.0 / 4.0) // есть шанс что из трупа выпадет лут
                { // либо восстановление здоровья
                   GameObject Health = Instantiate(HealthPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
-                  GameObject Space = GameObject.Find("Space");
                   Health.transform.SetParent(Space.transform);
                   Health.transform.localPosition = _rectTransform.transform.localPosition;
                }
-               else if (rnd.NextDouble() < 1.0 / 2.0)
+               else if (p < 1.0 / 2.0)
                { // либо восстановление выносливости
                   GameObject StaminaPotion = Instantiate(StaminaPotionPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
-                  GameObject Space = GameObject.Find("Space");
                   StaminaPotion.transform.SetParent(Space.transform);
                   StaminaPotion.transform.localPosition = _rectTransform.transform.localPosition;
+               }
+               else if (p < 3.0 / 4.0 )
+               { // либо восстановление магии
+                  GameObject MagicPotion = Instantiate(MagicPotionPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
+                  MagicPotion.transform.SetParent(Space.transform);
+                  MagicPotion.transform.localPosition = _rectTransform.transform.localPosition;
                }
                Destroy(EnemyObject);
             }
@@ -252,5 +250,10 @@ public class Enemy : MonoBehaviour
    {
       DeathSound.mute = mute;
       LifeDecrease.mute = mute;
+   }
+
+   void OnDestroy()
+   {
+      EventManager.OnExplode -= ExplodeListener;
    }
 }

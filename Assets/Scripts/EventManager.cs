@@ -40,6 +40,7 @@ public class EventManager : MonoBehaviour
    public GameObject DeathScreen;
    public GameObject EnemyPrefab;
    public GameObject MushroomPrefab;
+   public GameObject ExplosionPrefab;
 
    private float _timeForNewEnemy = 0.0f;
 
@@ -110,7 +111,10 @@ public class EventManager : MonoBehaviour
    public void Kill()
    {
       if (OnKill != null)
+      {
+         StartCoroutine(ClearNullReferenceWithDelay(4.0f));
          OnKill();
+      }
    }
 
    public void Heal()
@@ -144,7 +148,33 @@ public class EventManager : MonoBehaviour
       if (OnExplode != null)
       {
          OnExplode();
+         GameObject Space = GameObject.Find("Space");
+         Enemies.RemoveWhere(item => item == null);
+         foreach (GameObject enemy in Enemies)
+         {
+            if (enemy)
+            {
+               GameObject Explosion = Instantiate(ExplosionPrefab, new Vector2(0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
+               Explosion.transform.SetParent(Space.transform);
+               Explosion.transform.localPosition = enemy.GetComponent<RectTransform>().anchoredPosition + new Vector2((float)rnd.NextDouble() * 2.0f - 1.0f, (float)rnd.NextDouble() * 2.0f - 1.0f);
+               StartCoroutine(DestroyExplosionObjectWithDelay(Explosion, 1.167f));
+            }
+         }
       }
+   }
+
+   private System.Collections.IEnumerator DestroyExplosionObjectWithDelay(GameObject Explosion, float delay)
+   {
+      yield return new WaitForSeconds(delay);
+      // Code will be executed after delay
+      Destroy(Explosion);
+   }
+
+   private System.Collections.IEnumerator ClearNullReferenceWithDelay(float delay)
+   {
+      yield return new WaitForSeconds(delay);
+      // Code will be executed after delay
+      Enemies.RemoveWhere(item => item == null);
    }
 
    void FixedUpdate()

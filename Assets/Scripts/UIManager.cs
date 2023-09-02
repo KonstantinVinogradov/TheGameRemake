@@ -12,12 +12,12 @@ public class UIManager : MonoBehaviour
    public GameObject[] Life;
 
    public float _stamina { get; private set; } = 3.0f;
-   private float _maxStamina = 3.0f;
+   public float _maxStamina { get; private set; } = 3.0f;
    public Slider Stamina;
    public bool StaminaRecover { get; set; } = false;
 
    public float _magic { get; private set; } = 3.0f;
-   private float _maxMagic = 3.0f;
+   public float _maxMagic { get; private set; } = 3.0f;
    public Slider Magic;
    private bool _magicRecover = false;
    public bool MagicRecover 
@@ -168,9 +168,16 @@ public class UIManager : MonoBehaviour
    public void RecoverStamina(float value) // fast recover by stamina potion
    {
       _stamina = _stamina + value > _maxStamina ? _maxStamina : _stamina + value;
-      Stamina.value = 1.0f;
+      Stamina.value = _stamina / _maxStamina;
       AttackButton.interactable = true;
       RollButton.interactable = true;
+   }
+
+   public void RecoverMagic(float value) // fast recover by magic potion
+   {
+      _magic = _magic + value > _maxMagic ? _maxMagic : _magic + value;
+      Magic.value = _magic / _maxMagic;
+      ExplodeButton.interactable = true;
    }
 
    void FixedUpdate()
